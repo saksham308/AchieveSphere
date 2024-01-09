@@ -12,6 +12,7 @@ export const CreateGoal = createAsyncThunk(
   async (goalData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
+      console.log(token);
       return goalService.createGoal(goalData, token);
     } catch (err) {
       const message =
