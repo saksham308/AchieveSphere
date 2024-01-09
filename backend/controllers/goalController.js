@@ -30,7 +30,7 @@ const putGoals = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
   if (goal.user.toString() !== req.user.id) {
-    res.status(400);
+    res.status(401);
     throw new Error("User not authorized");
   }
   const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {
@@ -50,10 +50,10 @@ const deleteGoals = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
   if (goal.user.toString() !== req.user.id) {
-    res.status(400);
+    res.status(401);
     throw new Error("User not authorized");
   }
-  const deletedGoal = await Goal.deleteOne({ _id: req.params.id });
+  await Goal.deleteOne({ _id: req.params.id });
   res.status(200).json({ id: `${req.params.id}` });
 });
 module.exports = { getGoals, setGoals, deleteGoals, putGoals };
