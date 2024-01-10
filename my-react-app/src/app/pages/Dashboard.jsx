@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import GoalForm from "../../Components/GoalForm";
@@ -8,6 +8,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+
   const { goals, isError, isLoading, message, isSuccess } = useSelector(
     (state) => state.goals
   );
